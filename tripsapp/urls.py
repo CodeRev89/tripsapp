@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from tripsapp import views
+from tripsapp import models
 
 
 urlpatterns = [
@@ -23,4 +24,5 @@ urlpatterns = [
     path( "login/",views.UserLoginAPIView.as_view(), name="User-login"),
     path("register/", views.UserCreateAPIView.as_view(), name= "Register-User"),
     path("login/<int:object_id>", views.UserLoginAPIView.as_view(), name="user-login"),
+    path("profile/", views.Profile.as_view(),name ="profile")
 ]
