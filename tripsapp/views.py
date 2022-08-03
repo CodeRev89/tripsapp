@@ -1,10 +1,12 @@
 from rest_framework.generics import CreateAPIView
+from rest_framework.generics import UpdateAPIView
 from .serializers import UserCreateSerializer
 from .serializers import UserLoginSerializer
-from .serializer import UpdateSerializer
+from .serializers import UpdateSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from .models import Profile
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -24,8 +26,8 @@ class UserLoginAPIView(APIView):
         return Response(serializer.errors, HTTP_400_BAD_REQUEST)
     
 class UserUpdateAPIView(UpdateAPIView):
-    queryset = ModelName.objects.all()
-    serializer_class = CreateSerializer
+    queryset = Profile.objects.all()
+    serializer_class = UserCreateSerializer
     lookup_field = 'id'
     lookup_url_kwarg = 'object_id'
     
