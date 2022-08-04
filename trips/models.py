@@ -1,16 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User(models.Model):
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=128)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
 
 class Profile(models.Model): 
     user = models.OneToOneField(
         User,
-        on_delete=models.CASCADE,
-        primary_key=True,
+        on_delete=models.CASCADE
     )
     
     first_name = models.CharField(max_length=50)
