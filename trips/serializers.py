@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Trips
 from rest_framework import serializers
 from rest_framework_simplejwt.tokens import RefreshToken
+
 
 
 
@@ -53,3 +54,19 @@ class UpdateSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ["first name", "last name", "image field", "bio"]
     
+    
+class CreateTripSerializer():
+    class Meta:
+        model= Trips
+        fields= ["destination", "length", "price", "image"]
+        
+    
+class DetailTripSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Trips
+        fields=["destination", "length", "price", "image"]
+        
+class TripsListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Trips
+        fields= ["destination", "length", "price", "image"]

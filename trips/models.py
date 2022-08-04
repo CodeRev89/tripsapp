@@ -17,3 +17,14 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=50)
     image_field=models.ImageField()
     bio_field=models.CharField(max_length=500)    
+    
+class Trips(models.Model):
+    user = models.ForeignKey(
+        User(),
+        on_delete=models.CASCADE,
+        related_name="Trips",)
+    Destination = models.CharField(max_length=100)
+    Details = models.TextField()
+    length = models.CharField(max_length=12)
+    
+    

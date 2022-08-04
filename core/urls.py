@@ -1,4 +1,4 @@
-"""tripsapp URL Configuration
+"""core URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from tripsapp import views
-from tripsapp import models
-
+from trips import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls), 
+    path('admin/', admin.site.urls),
     path( "login/",views.UserLoginAPIView.as_view(), name="User-login"),
     path("register/", views.UserCreateAPIView.as_view(), name= "Register-User"),
     path("login/<int:object_id>", views.UserLoginAPIView.as_view(), name="user-login"),
-    path("profile/<int:object_id>", views.UserUpdateAPIView.as_view(),name ="profile")
+    path("profile/<int:object_id>", views.UserUpdateAPIView.as_view(),name ="profile"), 
+    path("create/",views.CreateTripsView.as_view(), name="create-trip"),
+    path("tripupdate",views.TripsUpdateView.as_view(), name="update-trip"),
+    path("tripdelete", views.TripsDeleteView.as_view(), name="delete-trip"),
 ]

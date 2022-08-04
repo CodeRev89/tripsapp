@@ -1,12 +1,13 @@
 from rest_framework.generics import CreateAPIView
 from rest_framework.generics import UpdateAPIView
-from .serializers import UserCreateSerializer
+from rest_framework.generics import RetrieveAPIView,DestroyAPIView,ListAPIView
+from .serializers import UserCreateSerializer, CreateTripSerializer,DetailTripSerializer, TripsListSerializer
 from .serializers import UserLoginSerializer
 from .serializers import UpdateSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
-from .models import Profile
+from .models import Profile, Trips
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -32,3 +33,26 @@ class UserUpdateAPIView(UpdateAPIView):
     lookup_url_kwarg = 'object_id'
     
     
+class CreateTripsView(CreateAPIView):
+    serializer_class = CreateTripSerializer
+    
+class TripDetailView(RetrieveAPIView):
+    queryset = Trips.objects.all()
+    serializer_class = DetailTripSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'object_id'
+    
+class TripsUpdateView(UpdateAPIView):
+    queryset = Trips.objects.all()
+    serializer_class = CreateTripSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'object_id'
+    
+class TripsDeleteView(DestroyAPIView):
+    queryset = Trips.objects.all()
+    serializer_class = TripsListSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'object_id'
+    
+class TripsListView(ListAPIView):
+    queryset = Trips.objects.all()
